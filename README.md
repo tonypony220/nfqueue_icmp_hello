@@ -14,7 +14,7 @@ sudo iptables -A INPUT -p icmp --icmp-type echo-request -j NFQUEUE --queue-num 0
 
 #### compile:
 ```bash
-gcc -o nfqueue_listener nfqueue_listener.c -lnetfilter_queue`
+gcc -o nfqueue_listener nfqueue_listener.c -lnetfilter_queue
 ```
 
 
