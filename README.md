@@ -1,22 +1,39 @@
-# nfqueue_icmp_hello
-dummy util to test error codes which would handle redirected icmp packets from nfqueue
+## nfqueue icmp hello world
+dummy util to test ping implementation by changing icmp response 
+util handle redirected icmp packets from nfqueue
 
-requirements:
-`sudo apt install libnetfilter-queue-dev`
+#### requirements:
+```bash
+sudo apt install libnetfilter-queue-dev
+```
 
-redirect icmp packets:
-`sudo iptables -A INPUT -p icmp --icmp-type echo-request -j NFQUEUE --queue-num 0`
+#### redirect icmp packets:
+```bash
+sudo iptables -A INPUT -p icmp --icmp-type echo-request -j NFQUEUE --queue-num 0
+```
 
-compile:
-`gcc -o nfqueue_listener nfqueue_listener.c -lnetfilter_queue`
+#### compile:
+```bash
+gcc -o nfqueue_listener nfqueue_listener.c -lnetfilter_queue`
+```
 
-run handler:
-`./nfqueue_listener code type`
 
-example: 
-`./nfqueue_listener 3 1`
+#### run listener:
+```bash
+./nfqueue_listener $code $type
+```
 
-codes and types you can find in ip_icmp.h file
+#### example: 
+```bash
+./nfqueue_listener 3 1
+```
+
+and on same machine
+```bash
+ping -v localhost
+``` 
+
+#### codes and types you can find in ip_icmp.h file
 
 ```
 /*
@@ -95,3 +112,5 @@ codes and types you can find in ip_icmp.h file
 #endif /* _NETINET_IP_ICMP_H_ */
 
 ```
+
+tested compiled on debian aarch64
